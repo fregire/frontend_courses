@@ -1,25 +1,43 @@
-import logo from './logo.svg';
+import React, { Component } from 'react';
+import { BrowserRouter } from 'react-router-dom';
 import './App.css';
+import MainNav from './components/MainNav';
+import MainCourses from './components/MainCourses';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+class App extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      courses: []
+    };
+  }
+
+  updateCourses(token){
+    fetch('http://jsonplaceholder.typicode.com/users', {
+      'method':'GET',
+      headers: {
+        'Content-Type':'application/json',
+        'Authorization':`Token ${token}` 
+      }
+    })
+    .then(resp => resp.json())
+    .then(resp => this.setState({courses: resp}))
+    .catch(error => console.log(error));
+  }
+
+  componentDidMount(){
+    this.updateCourses();
+  }
+
+  render(){
+    return (
+      <BrowserRouter>
+          <MainNav courses={this.state.courses} />
+          <MainCourses courses={this.state.courses} />
+      </BrowserRouter>
+    );
+  }
 }
 
 export default App;

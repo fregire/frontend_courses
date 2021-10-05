@@ -1,0 +1,22 @@
+.main-navbar {
+    padding: 0 30px;
+}
+
+.main-nav-right .nav-item {
+    position: relative;
+    height: 50px;
+    padding: 15px 0;
+    padding-left: 20px;
+    margin-right: 20px;
+    outline: none;
+    text-decoration: none;
+    color: #333333;
+}
+
+.main-nav-right .nav-item img {
+    position: absolute;
+    top: 50%;
+    left: 0;
+
+    transform: translate(0, -40%);
+}

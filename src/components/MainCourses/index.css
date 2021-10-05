@@ -1,0 +1,14 @@
+.main-courses h1 {
+    margin-bottom: 60px;
+}
+
+.main-courses .course-preview {
+  margin-bottom: 30px;
+}
+
+.course-preview {
+    border: 1px solid #A3A3A3;
+    padding: 30px;
+    min-height: 200px;
+    border-radius: 35px;
+}
