@@ -7,14 +7,27 @@ import manIcon from './man-icon.png';
 
 
 class MainNav extends Component {
-    getNavItems(){
-        const res = [];
+    renderNavItems(){
+        return this.props.courses
+            .map(course => <NavDropdown.Item href="#">{course.name}</NavDropdown.Item>);
+    }
 
-        for(const course of this.props.courses){
-            res.push(<NavDropdown.Item href="#">{course.name}</NavDropdown.Item>);
-        }
-
-        return res;
+    renderRightNav(){
+        return (
+            <div className="main-nav-right d-flex justify-content-between">
+                <a href="#" className="nav-item">
+                    <img src={notificationIcon} />
+                    Уведомления
+                </a>
+                <a href="#" className="nav-item">
+                    <img src={manIcon} />
+                    FirstName LastName
+                </a>
+                <a href="#" className="nav-item">
+                    Выйти
+                </a>
+            </div>
+        );
     }
     render(){
         return (
@@ -24,22 +37,10 @@ class MainNav extends Component {
                             <img className="logo" src={logo} />
                         </a>
                         <NavDropdown title="Мои курсы" id="basic-nav-dropdown">
-                            {this.getNavItems()}
+                            {this.renderNavItems()}
                         </NavDropdown>
                 </nav>
-                <div className="main-nav-right d-flex justify-content-between">
-                    <a href="#" className="nav-item">
-                        <img src={notificationIcon} />
-                        Уведомления
-                    </a>
-                    <a href="#" className="nav-item">
-                        <img src={manIcon} />
-                        FirstName LastName
-                    </a>
-                    <a href="#" className="nav-item">
-                        Выйти
-                    </a>
-                </div>
+                {this.renderRightNav()}
             </div>
         );
     }

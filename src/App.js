@@ -3,6 +3,7 @@ import { BrowserRouter } from 'react-router-dom';
 import './App.css';
 import MainNav from './components/MainNav';
 import MainCourses from './components/MainCourses';
+import api from './api/CoursesApi';
 
 
 class App extends Component {
@@ -14,16 +15,9 @@ class App extends Component {
   }
 
   updateCourses(token){
-    fetch('http://jsonplaceholder.typicode.com/users', {
-      'method':'GET',
-      headers: {
-        'Content-Type':'application/json',
-        'Authorization':`Token ${token}` 
-      }
-    })
-    .then(resp => resp.json())
-    .then(resp => this.setState({courses: resp}))
-    .catch(error => console.log(error));
+    api.getCourses(token).then(res => {
+      this.setState({courses: res});
+    });
   }
 
   componentDidMount(){

@@ -12,7 +12,7 @@ function CoursePreview(props){
 }
 
 class MainCourses extends Component {
-    getCourses(){
+    renderCourses(){
         const courses = [];
         for(const course of this.props.courses){
             courses.push(
@@ -29,16 +29,16 @@ class MainCourses extends Component {
 
     render(){
         return (
-                <div className="main-courses">
-                    <div className="container">
-                        <h1>Мои курсы</h1>
-                        <div className="main-courses-list container">
-                            <div className="row">
-                                {this.getCourses()}
-                            </div>
+            <div className="main-courses">
+                <div className="container">
+                    <h1>Мои курсы</h1>
+                    <div className="main-courses-list container">
+                        <div className="row">
+                            {this.renderCourses()}
                         </div>
                     </div>
                 </div>
+            </div>
         );
     }
 }
